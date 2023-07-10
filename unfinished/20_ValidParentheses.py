@@ -35,6 +35,8 @@ class Solution(object):
         return self.isValid("".join(input_array))
     elif dict_hash.get(first) == second and len(input_array) == 2:
       return True 
+    
+    #do not need this code b/c i account for odd number of characters in input_length function
     # elif dict_hash.get(first) == second and len(input_array) == 1:
     #   return False
 
