@@ -11,11 +11,11 @@ def solution(number):
 #exclude numbers less than 4
   if number >= 4:
   # iterate through numbers, starting from 1 to number
-    for i in range(1, number):
+    for num in range(1, number):
       #each number that is divisible by 3 or 5
-      if i % 3 == 0 or i % 5 == 0:
+      if num % 3 == 0 or num % 5 == 0:
       # added to collection
-        collection.append(i)
+        collection.append(num)
         
   #return the sum of all digits in collection
   return sum(collection)  
