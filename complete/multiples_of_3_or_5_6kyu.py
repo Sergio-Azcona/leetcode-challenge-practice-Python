@@ -19,10 +19,6 @@ def solution(number):
         
   #return the sum of all digits in collection
   return sum(collection)  
-    # pass
-  
-
-
 
 s1 = solution(4) # 3
 s2 = solution(6) #8 
