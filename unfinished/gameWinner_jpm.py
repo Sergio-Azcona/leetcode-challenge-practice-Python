@@ -77,13 +77,20 @@ def gameWinner(colors):
   count_hash["w"] = 0
   count_hash["b"] = 0
 
-  for p in range(1, len(pieces) - 2):
-      while (p + 1 < len(pieces)) and pieces[p-1 ] == "w" and pieces[p+1] == "w":
-        count_hash["w"] += 1
-        pieces.pop(p) 
-      while (p + 1 < len(pieces)) and pieces[p-1 ] == "b" and pieces[p+1] == "b":      
-        count_hash["b"] += 1
-        pieces.pop(p) 
+  for p in range(1, len(pieces)):
+      # if (p + 1 < len(pieces)): 
+        # while p + 1 < len(pieces): 
+      # while (p + 1 < len(pieces)) and pieces[p-1 ] == "w" and pieces[p+1] == "w": 
+          while  (p + 1 < len(pieces)) and  pieces[p-1] == pieces[p] and pieces[p+1] == pieces[p]:
+            if pieces[p] == "w":
+              count_hash["w"] += 1
+              pieces.pop(p) 
+            else:
+          # while (p + 1 < len(pieces)) and pieces[p-1 ] == "b" and pieces[p+1] == "b":      
+              count_hash["b"] += 1
+              pieces.pop(p) 
+          # else:
+          #   continue
   count_hash
 
   if count_hash["w"] > count_hash["b"]:
@@ -91,19 +98,19 @@ def gameWinner(colors):
   else:  
     return "bob", list(count_hash.values())
 
-# g1 = gameWinner("wwwbbw")
-# g2 = gameWinner("bbwwwwwbbbwbwbwwbbbbbwwbwwbbwbwwbwwbwwbbwwbwbwbbwbbwwbwbbwbbwwbwwbwbwbbwwwbwwbbwbbbbbwwwwwbwbwbwwbwbbbwbbbbwbwbwwbbwbwbbbwbwwwwwwbbwbwbwwwbwbwwwbbwwbwbbwwwbbbbwwbbbwbbbbwwwwwbbwwbbwwwwwwbwbbwwwbbbwbbwwwwwwbbwwbbwwwbbbbwwbbbbbbwwbbbbbwbwbwbwwbbbwbwbbwbbbbwwwwwbbwbwbbbbbwwbwwbwwwwbwwbbbbbbwbbbwwwwbwbbwbbbwwwwbwwwbbwwwbwwwbwbwbbbwbwwwbwwbwwwwbwbwwbwwwwwbwbwbwwbwbbbwbbwbwbwwbbbwwwbbbbwwwwwbbbbwwwwwbbbbwwwwbbwbbwbbwwwbwbbwbbwwbbbbbwbbwbwbwbwwwbwwwwwbwbwwbwbwbwbbwbbbbbbbwwbbwbbwwbwbbbbwbwwbbbwbwwbwbbwwwwwbwbwwbwbwwbbwwbbbwbwwwbbwwwwwbbbbbbbbwwbwwwwbbbbwwbbbbbbwwwbbbbbwbwbbbwwwwbbwwwbwwwwwwwbwbbbbwwwbwwwwbwbwwwbwwbwwwbwwbbbwbwbwwwbbbbwwwbbbwwbwbwwbwwbbbwbwbwwwbbwwbbwwbwbwbwwbwwwbwbwbwbbbwwbwbwbbwbwwwwbbbwbbbwwwwbwbbwbbwwwbwwwbbbbwbwbwwwwbbbwbwwbwbbwwwbbbwwbbbbwbwwbwbwwwwwbbwwbwwbwwbbbbwwbwwwbwwwwwwbbbbwbbbwbbwbwbwbbwbbbwwwbbbbbwbwwwwbbbwbwwbbwbwwbwwbwbbbwwbwwwbbbwbbwwwbbbbbwwbwwwbbwbbwbwwwbbwbwwwbwwbwwwwbbwwbbwwwwwbwwbbwwbwbwbbbwwbbwbbwwbbbwwbwbwbwbbwwwwwbbbwwwbbwbbwwwbwwwbwwbwwbbbbbwbbwwwwbb")
-# g3 = gameWinner("wwbbbwwwbbbbbwww")
-# g4 = gameWinner("wwwbbbbbbbbwww")
-# g5 = gameWinner("bbbwwwwwwwwbbb")
+g1 = gameWinner("wwwbbw")
+g2 = gameWinner("bbwwwwwbbbwbwbwwbbbbbwwbwwbbwbwwbwwbwwbbwwbwbwbbwbbwwbwbbwbbwwbwwbwbwbbwwwbwwbbwbbbbbwwwwwbwbwbwwbwbbbwbbbbwbwbwwbbwbwbbbwbwwwwwwbbwbwbwwwbwbwwwbbwwbwbbwwwbbbbwwbbbwbbbbwwwwwbbwwbbwwwwwwbwbbwwwbbbwbbwwwwwwbbwwbbwwwbbbbwwbbbbbbwwbbbbbwbwbwbwwbbbwbwbbwbbbbwwwwwbbwbwbbbbbwwbwwbwwwwbwwbbbbbbwbbbwwwwbwbbwbbbwwwwbwwwbbwwwbwwwbwbwbbbwbwwwbwwbwwwwbwbwwbwwwwwbwbwbwwbwbbbwbbwbwbwwbbbwwwbbbbwwwwwbbbbwwwwwbbbbwwwwbbwbbwbbwwwbwbbwbbwwbbbbbwbbwbwbwbwwwbwwwwwbwbwwbwbwbwbbwbbbbbbbwwbbwbbwwbwbbbbwbwwbbbwbwwbwbbwwwwwbwbwwbwbwwbbwwbbbwbwwwbbwwwwwbbbbbbbbwwbwwwwbbbbwwbbbbbbwwwbbbbbwbwbbbwwwwbbwwwbwwwwwwwbwbbbbwwwbwwwwbwbwwwbwwbwwwbwwbbbwbwbwwwbbbbwwwbbbwwbwbwwbwwbbbwbwbwwwbbwwbbwwbwbwbwwbwwwbwbwbwbbbwwbwbwbbwbwwwwbbbwbbbwwwwbwbbwbbwwwbwwwbbbbwbwbwwwwbbbwbwwbwbbwwwbbbwwbbbbwbwwbwbwwwwwbbwwbwwbwwbbbbwwbwwwbwwwwwwbbbbwbbbwbbwbwbwbbwbbbwwwbbbbbwbwwwwbbbwbwwbbwbwwbwwbwbbbwwbwwwbbbwbbwwwbbbbbwwbwwwbbwbbwbwwwbbwbwwwbwwbwwwwbbwwbbwwwwwbwwbbwwbwbwbbbwwbbwbbwwbbbwwbwbwbwbbwwwwwbbbwwwbbwbbwwwbwwwbwwbwwbbbbbwbbwwwwbb")
+g3 = gameWinner("wwbbbwwwbbbbbwww")
+g4 = gameWinner("wwwbbbbbbbbwww")
+g5 = gameWinner("bbbwwwwwwwwbbb")
 g6 = gameWinner("bbbwwwbbwww")
 
-# print(g1) #wendy
-# print(g2) #wendy
-# print(g3) #bob
-# print(g4) #bob
-# print(g5) #wendy
+print(g1) #wendy
+print(g2) #wendy
+print(g3) #bob
+print(g4) #bob
+print(g5) #wendy
 print(g6) #wendy
 
-# print(timeit.timeit("gameWinner('bbbwwwwwwbbb')", number=10000, setup="from __main__ import gameWinner"))
-# print(timeit.timeit("gameWinner('bbwwwwwbbbwbwbwwbbbbbwwbwwbbwbwwbwwbwwbbwwbwbwbbwbbwwbwbbwbbwwbwwbwbwbbwwwbwwbbwbbbbbwwwwwbwbwbwwbwbbbwbbbbwbwbwwbbwbwbbbwbwwwwwwbbwbwbwwwbwbwwwbbwwbwbbwwwbbbbwwbbbwbbbbwwwwwbbwwbbwwwwwwbwbbwwwbbbwbbwwwwwwbbwwbbwwwbbbbwwbbbbbbwwbbbbbwbwbwbwwbbbwbwbbwbbbbwwwwwbbwbwbbbbbwwbwwbwwwwbwwbbbbbbwbbbwwwwbwbbwbbbwwwwbwwwbbwwwbwwwbwbwbbbwbwwwbwwbwwwwbwbwwbwwwwwbwbwbwwbwbbbwbbwbwbwwbbbwwwbbbbwwwwwbbbbwwwwwbbbbwwwwbbwbbwbbwwwbwbbwbbwwbbbbbwbbwbwbwbwwwbwwwwwbwbwwbwbwbwbbwbbbbbbbwwbbwbbwwbwbbbbwbwwbbbwbwwbwbbwwwwwbwbwwbwbwwbbwwbbbwbwwwbbwwwwwbbbbbbbbwwbwwwwbbbbwwbbbbbbwwwbbbbbwbwbbbwwwwbbwwwbwwwwwwwbwbbbbwwwbwwwwbwbwwwbwwbwwwbwwbbbwbwbwwwbbbbwwwbbbwwbwbwwbwwbbbwbwbwwwbbwwbbwwbwbwbwwbwwwbwbwbwbbbwwbwbwbbwbwwwwbbbwbbbwwwwbwbbwbbwwwbwwwbbbbwbwbwwwwbbbwbwwbwbbwwwbbbwwbbbbwbwwbwbwwwwwbbwwbwwbwwbbbbwwbwwwbwwwwwwbbbbwbbbwbbwbwbwbbwbbbwwwbbbbbwbwwwwbbbwbwwbbwbwwbwwbwbbbwwbwwwbbbwbbwwwbbbbbwwbwwwbbwbbwbwwwbbwbwwwbwwbwwwwbbwwbbwwwwwbwwbbwwbwbwbbbwwbbwbbwwbbbwwbwbwbwbbwwwwwbbbwwwbbwbbwwwbwwwbwwbwwbbbbbwbbwwwwbb')", number=10000, setup="from __main__ import gameWinner"))
+print(timeit.timeit("gameWinner('bbbwwwwwwbbb')", number=10000, setup="from __main__ import gameWinner"))
+print(timeit.timeit("gameWinner('bbwwwwwbbbwbwbwwbbbbbwwbwwbbwbwwbwwbwwbbwwbwbwbbwbbwwbwbbwbbwwbwwbwbwbbwwwbwwbbwbbbbbwwwwwbwbwbwwbwbbbwbbbbwbwbwwbbwbwbbbwbwwwwwwbbwbwbwwwbwbwwwbbwwbwbbwwwbbbbwwbbbwbbbbwwwwwbbwwbbwwwwwwbwbbwwwbbbwbbwwwwwwbbwwbbwwwbbbbwwbbbbbbwwbbbbbwbwbwbwwbbbwbwbbwbbbbwwwwwbbwbwbbbbbwwbwwbwwwwbwwbbbbbbwbbbwwwwbwbbwbbbwwwwbwwwbbwwwbwwwbwbwbbbwbwwwbwwbwwwwbwbwwbwwwwwbwbwbwwbwbbbwbbwbwbwwbbbwwwbbbbwwwwwbbbbwwwwwbbbbwwwwbbwbbwbbwwwbwbbwbbwwbbbbbwbbwbwbwbwwwbwwwwwbwbwwbwbwbwbbwbbbbbbbwwbbwbbwwbwbbbbwbwwbbbwbwwbwbbwwwwwbwbwwbwbwwbbwwbbbwbwwwbbwwwwwbbbbbbbbwwbwwwwbbbbwwbbbbbbwwwbbbbbwbwbbbwwwwbbwwwbwwwwwwwbwbbbbwwwbwwwwbwbwwwbwwbwwwbwwbbbwbwbwwwbbbbwwwbbbwwbwbwwbwwbbbwbwbwwwbbwwbbwwbwbwbwwbwwwbwbwbwbbbwwbwbwbbwbwwwwbbbwbbbwwwwbwbbwbbwwwbwwwbbbbwbwbwwwwbbbwbwwbwbbwwwbbbwwbbbbwbwwbwbwwwwwbbwwbwwbwwbbbbwwbwwwbwwwwwwbbbbwbbbwbbwbwbwbbwbbbwwwbbbbbwbwwwwbbbwbwwbbwbwwbwwbwbbbwwbwwwbbbwbbwwwbbbbbwwbwwwbbwbbwbwwwbbwbwwwbwwbwwwwbbwwbbwwwwwbwwbbwwbwbwbbbwwbbwbbwwbbbwwbwbwbwbbwwwwwbbbwwwbbwbbwwwbwwwbwwbwwbbbbbwbbwwwwbb')", number=10000, setup="from __main__ import gameWinner"))
